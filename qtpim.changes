@@ -1,2 +1,5 @@
+* Thu May 23 2013 Matt Vogt <matthew.vogt@jollamobile.com> - 0.0-0
+- Update to git revision a102eacec29d54e609e4ac4350b70bc7f7f92d5e
+
 * Thu May 02 2013 Matt Vogt <matthew.vogt@jollamobile.com> - 0.0-0
 - Initial import of Qt5 qtpim module

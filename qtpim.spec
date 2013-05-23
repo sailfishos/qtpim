@@ -1,7 +1,7 @@
-%define _qtmodule_snapshot_version 0.0~git9352f4852fddfc65efc9cd796352bc7da6f8fc08
+%define _qtmodule_snapshot_version 0.0~gita102eacec29d54e609e4ac4350b70bc7f7f92d5e
 Name:       qt5-qtpim
 Summary:    Qt PIM modules
-Version:    0.0~git9352f4852fddfc65efc9cd796352bc7da6f8fc08
+Version:    0.0~gita102eacec29d54e609e4ac4350b70bc7f7f92d5e
 Release:    1%{?dist}
 Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3
@@ -9,16 +9,9 @@ URL:        http://qt.nokia.com
 Source0:    qtpim-opensource-src-%{_qtmodule_snapshot_version}.tar.xz
 Patch0:     0001-Patch-module-version.patch
 BuildRequires:  qt5-qtcore-devel
-#BuildRequires:  qt5-qtgui-devel
-#BuildRequires:  qt5-qtnetwork-devel
-#BuildRequires:  qt5-qtsql-devel
-#BuildRequires:  qt5-qtdbus-devel
 BuildRequires:  qt5-qtxmlpatterns-devel
-#BuildRequires:  qt5-qttest-devel
-#BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtdeclarative-devel
 BuildRequires:  qt5-qtdeclarative-qtquick-devel
-#BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 
 %description
