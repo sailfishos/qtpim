@@ -40,6 +40,10 @@
 ****************************************************************************/
 
 #include "qversitdocumentwriter_p.h"
+
+#include <QtCore/qiodevice.h>
+#include <QtCore/qtextcodec.h>
+
 #include "qversitutils_p.h"
 #include <QTextCodec>
 
