@@ -1,6 +1,9 @@
 TARGET = QtVersit
 QT = core contacts
 
+MODULE_PLUGIN_TYPES = \
+    versit
+
 QMAKE_DOCS = $$PWD/doc/qtversit.qdocconf
 
 load(qt_module)

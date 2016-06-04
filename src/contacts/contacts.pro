@@ -1,6 +1,9 @@
 TARGET = QtContacts
 QT = core-private
 
+MODULE_PLUGIN_TYPES = \
+    contacts
+
 QMAKE_DOCS = $$PWD/doc/qtcontacts.qdocconf
 
 load(qt_module)

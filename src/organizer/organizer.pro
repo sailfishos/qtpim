@@ -1,6 +1,9 @@
 TARGET = QtOrganizer
 QT = core-private
 
+MODULE_PLUGIN_TYPES = \
+    organizer
+
 QMAKE_DOCS = $$PWD/doc/qtorganizer.qdocconf
 
 load(qt_module)

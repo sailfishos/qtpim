@@ -43,6 +43,7 @@
 #include <QString>
 #include <QTextStream>
 #include <QUrl>
+#include <QDataStream>
 #include "backupvcardhandler.h"
 #include <qcontact.h>
 #include <qcontactdetail.h>
