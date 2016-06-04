@@ -33,6 +33,10 @@
 
 #include "backupvcardhandler.h"
 
+#include <QList>
+#include <QString>
+#include <QTextStream>
+
 #include <QtCore/qdatastream.h>
 #include <QtCore/qdatetime.h>
 #include <QtCore/qvariant.h>
