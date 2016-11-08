@@ -42,6 +42,7 @@
 #include "qcontactsortorder.h"
 #include "qcontactsortorder_p.h"
 #include "qcontactdetail.h"
+#include <QDataStream>
 
 #ifndef QT_NO_DEBUG_STREAM
 #include <QDebug>

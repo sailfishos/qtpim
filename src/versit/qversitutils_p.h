@@ -62,6 +62,7 @@
 #include <QString>
 #include <QStringList>
 #include <QMultiHash>
+#include <QVariant>
 
 QT_BEGIN_NAMESPACE_VERSIT
 class QVersitDocument;

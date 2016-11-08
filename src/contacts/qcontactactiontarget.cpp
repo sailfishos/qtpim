@@ -45,6 +45,7 @@
 #include "qcontact.h"
 
 #include <QHash>
+#include <QDataStream>
 
 QT_BEGIN_NAMESPACE_CONTACTS
 
