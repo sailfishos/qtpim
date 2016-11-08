@@ -45,16 +45,18 @@
 // We mean it.
 //
 
+#include <QtVersit/qversitproperty.h>
+
 #include <QtCore/qbytearray.h>
 #include <QtCore/qbytearraymatcher.h>
 #include <QtCore/qlist.h>
 #include <QtCore/QMutex>
 
-#include <QtVersit/qversitproperty.h>
-
-QT_FORWARD_DECLARE_CLASS(QString)
-QT_FORWARD_DECLARE_CLASS(QTextCodec)
-QT_FORWARD_DECLARE_CLASS(QVariant)
+#include <QPair>
+#include <QString>
+#include <QStringList>
+#include <QMultiHash>
+#include <QVariant>
 
 QT_BEGIN_NAMESPACE_VERSIT
 

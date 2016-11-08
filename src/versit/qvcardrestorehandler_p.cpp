@@ -33,11 +33,12 @@
 
 #include "qvcardrestorehandler_p.h"
 
+#include "qversitproperty.h"
+
 #include <QtCore/qdatastream.h>
 #include <QtCore/qdatetime.h>
 #include <QtCore/qurl.h>
 
-#include "qversitproperty.h"
 
 /*
     When these conditions are satisfied, QStringLiteral is implemented by

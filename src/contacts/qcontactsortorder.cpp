@@ -33,7 +33,7 @@
 
 #include "qcontactsortorder.h"
 #include "qcontactsortorder_p.h"
-
+#include "qcontactdetail.h"
 #ifndef QT_NO_DATASTREAM
 #include <QtCore/qdatastream.h>
 #endif

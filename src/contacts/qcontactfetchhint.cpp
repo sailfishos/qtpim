@@ -34,6 +34,7 @@
 #include "qcontactfetchhint.h"
 #include "qcontactfetchhint_p.h"
 
+#include <QStringList>
 #ifndef QT_NO_DATASTREAM
 #include <QtCore/qdatastream.h>
 #endif

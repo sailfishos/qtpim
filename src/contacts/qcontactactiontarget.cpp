@@ -34,6 +34,8 @@
 #include "qcontactactiontarget.h"
 #include "qcontactactiontarget_p.h"
 
+#include "qcontact.h"
+#include <QHash>
 #ifndef QT_NO_DATASTREAM
 #include <QtCore/qdatastream.h>
 #endif
