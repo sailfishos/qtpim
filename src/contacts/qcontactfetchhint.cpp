@@ -43,6 +43,7 @@
 #include "qcontactfetchhint_p.h"
 
 #include <QStringList>
+#include <QDataStream>
 
 #ifndef QT_NO_DEBUG_STREAM
 #include <QDebug>

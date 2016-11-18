@@ -45,6 +45,7 @@
 #include <QList>
 #include <QDateTime>
 #include <QUrl>
+#include <QDataStream>
 
 /*
     When these conditions are satisfied, QStringLiteral is implemented by
