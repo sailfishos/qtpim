@@ -1,6 +1,9 @@
 TARGET = QtVersitOrganizer
 QT = core versit-private organizer
 
+PC_VERSION = $$system(echo $RPM_PACKAGE_VERSION | sed 's/+.*//')
+QMAKE_PKGCONFIG_VERSION = $$PC_VERSION
+
 load(qt_module)
 
 PUBLIC_HEADERS += \

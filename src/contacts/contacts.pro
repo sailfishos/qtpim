@@ -1,6 +1,9 @@
 TARGET = QtContacts
 QT = core-private
 
+PC_VERSION = $$system(echo $RPM_PACKAGE_VERSION | sed 's/+.*//')
+QMAKE_PKGCONFIG_VERSION = $$PC_VERSION
+
 MODULE_PLUGIN_TYPES = \
     contacts
 
