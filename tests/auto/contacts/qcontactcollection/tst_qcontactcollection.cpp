@@ -80,6 +80,8 @@ void tst_QContactCollection::metaData()
     QVERIFY(c.metaData().isEmpty());
     c.setExtendedMetaData(QString(QStringLiteral("test")), 5);
     QCOMPARE(c.extendedMetaData(QString(QStringLiteral("test"))).toInt(), 5);
+    QCOMPARE(c.extendedMetaData().keys(), QList<QString>() << QStringLiteral("test"));
+    QCOMPARE(c.extendedMetaData().value(QString(QStringLiteral("test"))).toInt(), 5);
 
     QMap<QContactCollection::MetaDataKey, QVariant> mdm;
     mdm.insert(QContactCollection::KeyName, QString(QStringLiteral("test2")));

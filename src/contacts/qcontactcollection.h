@@ -81,6 +81,7 @@ public:
 
     void setExtendedMetaData(const QString &key, const QVariant &value);
     QVariant extendedMetaData(const QString &key) const;
+    QVariantMap extendedMetaData() const;
 
 private:
     friend Q_CONTACTS_EXPORT uint qHash(const QContactCollection &key);
