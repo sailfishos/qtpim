@@ -141,7 +141,7 @@ void QDeclarativeContactRelationship::setRelationshipType(const QVariant& relati
             break;
         default:
             //unknown type
-            qmlWarning(this) << tr("unknown relationship type:") << relationshipType;
+            qmlInfo(this) << tr("unknown relationship type:") << relationshipType;
             break;
         }
     } else {

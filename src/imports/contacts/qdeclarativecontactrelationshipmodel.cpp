@@ -410,7 +410,7 @@ void QDeclarativeContactRelationshipModel::relationshipsRemoved()
                     endRemoveRows();
                 } else {
                     //impossible?
-                    qmlWarning(this) << tr("this relationship '") << row << tr("' was already removed!");
+                    qmlInfo(this) << tr("this relationship '") << row << tr("' was already removed!");
                 }
             }
         }
