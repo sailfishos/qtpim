@@ -34,6 +34,14 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt PIM Contacts module
 
 
+%package -n qt5-qtpim-contacts-tests
+Summary:    Qt PIM Contacts unit tests
+Requires:   qt5-qtpim-contacts = %{version}-%{release}
+
+%description -n qt5-qtpim-contacts-tests
+Qt PIM Contacts unit tests.
+
+
 %package -n qt5-qtpim-contacts-devel
 Summary:    Qt PIM - development files
 Group:      Development/Libraries
@@ -56,7 +64,6 @@ Requires:   qt5-qtdeclarative
 This package contains the PIM Contacts imports for QtDeclarative
 
 
-
 %package -n qt5-qtpim-organizer
 Summary:    Qt PIM Organizer
 Group:      System/Libraries
@@ -69,6 +76,14 @@ write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
 .
 This package contains the Qt PIM Organizer module
+
+
+%package -n qt5-qtpim-organizer-tests
+Summary:    Qt PIM Organizer unit tests
+Requires:   qt5-qtpim-organizer = %{version}-%{release}
+
+%description -n qt5-qtpim-organizer-tests
+Qt PIM Organizer unit tests.
 
 
 %package -n qt5-qtpim-organizer-devel
@@ -108,6 +123,14 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt PIM Versit module
 
 
+%package -n qt5-qtpim-versit-tests
+Summary:    Qt PIM Versit unit tests
+Requires:   qt5-qtpim-versit = %{version}-%{release}
+
+%description -n qt5-qtpim-versit-tests
+Qt PIM Versit unit tests.
+
+
 %package -n qt5-qtpim-versit-devel
 Summary:    Qt PIM - development files
 Group:      Development/Libraries
@@ -134,6 +157,14 @@ write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
 .
 This package contains the Qt PIM VersitOrganizer module
+
+
+%package -n qt5-qtpim-versitorganizer-tests
+Summary:    Qt PIM VersitOrganizer unit tests
+Requires:   qt5-qtpim-versitorganizer = %{version}-%{release}
+
+%description -n qt5-qtpim-versitorganizer-tests
+Qt PIM VersitOrganizer unit tests.
 
 
 %package -n qt5-qtpim-versitorganizer-devel
@@ -207,6 +238,21 @@ rm -rf %{buildroot}/%{_includedir}/qt5/Qt
 %{_libdir}/libQt5Contacts.so.5.*
 %{_libdir}/qt5/plugins/contacts/libqtcontacts_memory.so
 
+%files -n qt5-qtpim-contacts-tests
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/contacts/libmaliciousplugin.so
+%{_libdir}/qt5/tests/qcontact/qcontact
+%{_libdir}/qt5/tests/qcontactcollection/qcontactcollection
+%{_libdir}/qt5/tests/qcontactdetail/qcontactdetail
+%{_libdir}/qt5/tests/qcontactdetails/qcontactdetails
+%{_libdir}/qt5/tests/qcontactfilter/qcontactfilter
+%{_libdir}/qt5/tests/qcontactmanager/qcontactmanager
+%{_libdir}/qt5/tests/qcontactmanagerdetails/qcontactmanagerdetails
+%{_libdir}/qt5/tests/qcontactrelationship/qcontactrelationship
+%{_libdir}/qt5/tests/qcontactsortorder/qcontactsortorder
+%{_libdir}/qt5/tests/tst_qcontactasync/tst_qcontactasync
+%{_libdir}/qt5/tests/unittest/unittest
+
 %files -n qt5-qtpim-contacts-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQt5Contacts.so
@@ -226,6 +272,20 @@ rm -rf %{buildroot}/%{_includedir}/qt5/Qt
 %{_libdir}/libQt5Organizer.so.5
 %{_libdir}/libQt5Organizer.so.5.*
 %{_libdir}/qt5/plugins/organizer/libqtorganizer_memory.so
+
+%files -n qt5-qtpim-organizer-tests
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/organizer/libmaliciousplugin.so
+%{_libdir}/qt5/tests/qorganizercollection/qorganizercollection
+%{_libdir}/qt5/tests/qorganizere2e/qorganizere2e
+%{_libdir}/qt5/tests/qorganizeritem/qorganizeritem
+%{_libdir}/qt5/tests/qorganizeritemdetail/qorganizeritemdetail
+%{_libdir}/qt5/tests/qorganizeritemdetails/qorganizeritemdetails
+%{_libdir}/qt5/tests/qorganizeritemfilter/qorganizeritemfilter
+%{_libdir}/qt5/tests/qorganizeritemsortorder/qorganizeritemsortorder
+%{_libdir}/qt5/tests/qorganizermanager/qorganizermanager
+%{_libdir}/qt5/tests/qorganizermanagerdetails/qorganizermanagerdetails
+%{_libdir}/qt5/tests/tst_qorganizeritemasync/tst_qorganizeritemasync
 
 %files -n qt5-qtpim-organizer-devel
 %defattr(-,root,root,-)
@@ -248,6 +308,18 @@ rm -rf %{buildroot}/%{_includedir}/qt5/Qt
 %{_libdir}/qt5/plugins/versit/libqtversit_backuphandler.so
 %{_libdir}/qt5/plugins/versit/libqtversit_vcardpreserver.so
 
+%files -n qt5-qtpim-versit-tests
+%defattr(-,root,root,-)
+%{_libdir}/qt5/tests/qvcard21writer/qvcard21writer
+%{_libdir}/qt5/tests/qvcard30writer/qvcard30writer
+%{_libdir}/qt5/tests/qversitdocument/qversitdocument
+%{_libdir}/qt5/tests/qversitproperty/qversitproperty
+%{_libdir}/qt5/tests/qversitreader/qversitreader
+%{_libdir}/qt5/tests/qversitwriter/qversitwriter
+%{_libdir}/qt5/tests/qversitcontactexporter/qversitcontactexporter
+%{_libdir}/qt5/tests/qversitcontactimporter/qversitcontactimporter
+%{_libdir}/qt5/tests/tst_qversitcontactplugins/tst_qversitcontactplugins
+
 %files -n qt5-qtpim-versit-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQt5Versit.so
@@ -262,6 +334,11 @@ rm -rf %{buildroot}/%{_includedir}/qt5/Qt
 %defattr(-,root,root,-)
 %{_libdir}/libQt5VersitOrganizer.so.5
 %{_libdir}/libQt5VersitOrganizer.so.5.*
+
+%files -n qt5-qtpim-versitorganizer-tests
+%defattr(-,root,root,-)
+%{_libdir}/qt5/tests/qversitorganizerexporter/qversitorganizerexporter
+%{_libdir}/qt5/tests/qversitorganizerimporter/qversitorganizerimporter
 
 %files -n qt5-qtpim-versitorganizer-devel
 %defattr(-,root,root,-)

@@ -12,4 +12,4 @@ SUBDIRS += \
     qorganizermanagerdetails \
     qorganizere2e
 
-qtHaveModule(qmltest): SUBDIRS += qmlorganizer
+#qtHaveModule(qmltest): SUBDIRS += qmlorganizer

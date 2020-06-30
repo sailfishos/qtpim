@@ -16,6 +16,6 @@ SUBDIRS += \
 #    qdeclarativecontact
     qcontactmanager \
     qcontactmanagerdetails \
-    qcontactmanagerfiltering \
-    qmlcontacts
+    qcontactmanagerfiltering
 
+#qtHaveModule(qmltest): SUBDIRS += qmlcontacts
