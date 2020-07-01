@@ -133,6 +133,7 @@ void QContactManagerData::createEngine(const QString &managerName, const QMap<QS
 
     while (!found) {
         foreach (QContactManagerEngineFactory* f, factories) {
+            if (!f) continue;
             QList<int> versions = f->supportedImplementationVersions();
             if (implementationVersion == -1 ||//no given implementation version required
                     versions.isEmpty() || //the manager engine factory does not report any version

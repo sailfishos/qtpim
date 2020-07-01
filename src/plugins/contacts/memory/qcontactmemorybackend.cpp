@@ -519,7 +519,7 @@ QContactCollectionId QContactMemoryEngine::defaultCollectionId() const
     return collectionId(id);
 }
 
-QContactCollection QContactMemoryEngine::collection(const QContactCollectionId &collectionId, QContactManager::Error *error)
+QContactCollection QContactMemoryEngine::collection(const QContactCollectionId &collectionId, QContactManager::Error *error) const
 {
     if (d->m_idToCollectionHash.contains(collectionId)) {
         *error = QContactManager::NoError;
@@ -530,7 +530,7 @@ QContactCollection QContactMemoryEngine::collection(const QContactCollectionId &
     return QContactCollection();
 }
 
-QList<QContactCollection> QContactMemoryEngine::collections(QContactManager::Error *error)
+QList<QContactCollection> QContactMemoryEngine::collections(QContactManager::Error *error) const
 {
     Q_ASSERT(!d->m_idToCollectionHash.isEmpty());
     *error = QContactManager::NoError;

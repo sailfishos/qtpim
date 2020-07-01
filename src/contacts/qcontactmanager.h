@@ -151,8 +151,8 @@ public:
 
     // collections
     QContactCollectionId defaultCollectionId() const;
-    QContactCollection collection(const QContactCollectionId& collectionId);
-    QList<QContactCollection> collections();
+    QContactCollection collection(const QContactCollectionId& collectionId) const;
+    QList<QContactCollection> collections() const;
     bool saveCollection(QContactCollection* collection);
     bool removeCollection(const QContactCollectionId& collectionId);
 

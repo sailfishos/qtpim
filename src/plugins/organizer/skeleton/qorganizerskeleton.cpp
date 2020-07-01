@@ -258,7 +258,7 @@ QOrganizerCollectionId QOrganizerItemSkeletonEngine::defaultCollectionId() const
     return QOrganizerManagerEngine::defaultCollectionId();
 }
 
-QOrganizerCollection QOrganizerItemSkeletonEngine::collection(const QOrganizerCollectionId& collectionId, QOrganizerManager::Error* error)
+QOrganizerCollection QOrganizerItemSkeletonEngine::collection(const QOrganizerCollectionId& collectionId, QOrganizerManager::Error* error) const
 {
     /*
         TODO
@@ -270,7 +270,7 @@ QOrganizerCollection QOrganizerItemSkeletonEngine::collection(const QOrganizerCo
     return QOrganizerManagerEngine::collection(collectionId, error);
 }
 
-QList<QOrganizerCollection> QOrganizerItemSkeletonEngine::collections(QOrganizerManager::Error* error)
+QList<QOrganizerCollection> QOrganizerItemSkeletonEngine::collections(QOrganizerManager::Error* error) const
 {
     /*
         TODO
