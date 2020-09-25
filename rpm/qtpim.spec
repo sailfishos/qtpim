@@ -209,7 +209,6 @@ rm -rf %{buildroot}/%{_includedir}/qt5/Qt
 
 
 
-
 %post -n qt5-qtpim-contacts
 /sbin/ldconfig
 %postun -n qt5-qtpim-contacts
