@@ -10,6 +10,7 @@ BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtxmlpatterns-devel
 BuildRequires:  qt5-qtdeclarative-devel
 BuildRequires:  qt5-qtdeclarative-qtquick-devel
+BuildRequires:  qt5-qttest-devel
 BuildRequires:  fdupes
 
 %description
