@@ -2,9 +2,8 @@ Name:       qt5-qtpim
 Summary:    Qt PIM modules
 Version:    0.0~gita102eacec29d54e609e4ac4350b70bc7f7f92d5e
 Release:    1%{?dist}
-Group:      System/Libraries
-License:    LGPLv2.1 with exception or GPLv3
-URL:        http://qt.nokia.com
+License:    (LGPLv2 or LGPLv3) with exception or GPLv3 or Qt Commercial
+URL:        https://www.qt.io/
 Source0:    %{name}-%{version}.tar.bz2
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtxmlpatterns-devel
@@ -23,7 +22,6 @@ This package contains the Qt PIM module
 
 %package -n qt5-qtpim-contacts
 Summary:    Qt PIM Contacts
-Group:      System/Libraries
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -45,7 +43,6 @@ Qt PIM Contacts unit tests.
 
 %package -n qt5-qtpim-contacts-devel
 Summary:    Qt PIM - development files
-Group:      Development/Libraries
 Requires:   qt5-qtpim-contacts = %{version}-%{release}
 
 %description -n qt5-qtpim-contacts-devel
@@ -58,7 +55,6 @@ This package contains the Qt PIM Contacts development files
 
 %package -n qt5-qtdeclarative-pim-contacts
 Summary:    Qt PIM Contacts import for QtDeclarative
-Group:      System/Libraries
 Requires:   qt5-qtdeclarative
 
 %description -n qt5-qtdeclarative-pim-contacts
@@ -67,7 +63,6 @@ This package contains the PIM Contacts imports for QtDeclarative
 
 %package -n qt5-qtpim-organizer
 Summary:    Qt PIM Organizer
-Group:      System/Libraries
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -89,7 +84,6 @@ Qt PIM Organizer unit tests.
 
 %package -n qt5-qtpim-organizer-devel
 Summary:    Qt PIM - development files
-Group:      Development/Libraries
 Requires:   qt5-qtpim-organizer = %{version}-%{release}
 
 %description -n qt5-qtpim-organizer-devel
@@ -102,7 +96,6 @@ This package contains the Qt PIM Organizer development files
 
 %package -n qt5-qtdeclarative-pim-organizer
 Summary:    Qt PIM Organizer import for QtDeclarative
-Group:      System/Libraries
 Requires:   qt5-qtdeclarative
 
 %description -n qt5-qtdeclarative-pim-organizer
@@ -112,7 +105,6 @@ This package contains the PIM Organizer imports for QtDeclarative
 
 %package -n qt5-qtpim-versit
 Summary:    Qt PIM Versit
-Group:      System/Libraries
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -134,7 +126,6 @@ Qt PIM Versit unit tests.
 
 %package -n qt5-qtpim-versit-devel
 Summary:    Qt PIM - development files
-Group:      Development/Libraries
 Requires:   qt5-qtpim-versit = %{version}-%{release}
 
 %description -n qt5-qtpim-versit-devel
@@ -148,7 +139,6 @@ This package contains the Qt PIM Versit development files
 
 %package -n qt5-qtpim-versitorganizer
 Summary:    Qt PIM VersitOrganizer
-Group:      System/Libraries
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -170,7 +160,6 @@ Qt PIM VersitOrganizer unit tests.
 
 %package -n qt5-qtpim-versitorganizer-devel
 Summary:    Qt PIM - development files
-Group:      Development/Libraries
 Requires:   qt5-qtpim-versitorganizer = %{version}-%{release}
 
 %description -n qt5-qtpim-versitorganizer-devel
@@ -234,6 +223,7 @@ rm -rf %{buildroot}/%{_includedir}/qt5/Qt
 
 %files -n qt5-qtpim-contacts
 %defattr(-,root,root,-)
+%license LICENSE.LGPLv* LGPL_EXCEPTION.txt LICENSE.GPLv3
 %{_libdir}/libQt5Contacts.so.5
 %{_libdir}/libQt5Contacts.so.5.*
 %{_libdir}/qt5/plugins/contacts/libqtcontacts_memory.so
