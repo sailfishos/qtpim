@@ -34,6 +34,8 @@
 #include "qversitcontactimporter_p.h"
 
 #include <QtContacts/qcontactdetails.h>
+#include <QRegularExpression>
+#include <QStringBuilder>
 
 #include "qversitcontacthandler.h"
 #include "qversitcontactpluginloader_p.h"
@@ -983,26 +985,87 @@ QString QVersitContactImporterPrivate::takeFirst(QList<QString>& list) const
  */
 QDateTime QVersitContactImporterPrivate::parseDateTime(QString value, bool *justDate) const
 {
+    QString separatorPattern = QStringLiteral("[-/.]");
     bool hasTime = false;
     bool utc = value.endsWith(QLatin1Char('Z'), Qt::CaseInsensitive);
+    bool hasSeparator = value.contains(QRegExp(separatorPattern));
+    bool hasTimeKey = value.contains(QLatin1Char('T'));
+
+    QString groupDay = QStringLiteral("day");
+    QString groupMonth = QStringLiteral("month");
+    QString groupYear = QStringLiteral("year");
+    QString groupHr = QStringLiteral("HH");
+    QString groupMin = QStringLiteral("mm");
+    QString groupSec = QStringLiteral("ss");
+    QString dayPattern = QStringLiteral("(?<%1>\\d{1,2})").arg(groupDay);
+    QString monthPattern = QStringLiteral("(?<%1>\\d{1,2})").arg(groupMonth);
+    QString yearPattern = QStringLiteral("(?<%1>\\d{4}|%2)").arg(groupYear, separatorPattern);
+    QString timePattern = QStringLiteral("T(?<%1>\\d{1,2})%4(?<%2>\\d{1,2})%4(?<%3>\\d{1,2})").arg(groupHr, groupMin,
+                                                                                                   groupSec, QStringLiteral("(-?|[:])"));
+    QString regexShortDatePattern = hasSeparator ? QStringLiteral("^%1") % separatorPattern % QStringLiteral("%2")
+                                                 : QStringLiteral("^%1%2");
+    QString regexFullDatePattern = QStringLiteral("%1%2").arg(regexShortDatePattern, hasSeparator ? separatorPattern % QStringLiteral("%3")
+                                                                                                  : QStringLiteral("%3"));
+    QDateTime dateTime;
+    QRegularExpression re;
+    QRegularExpressionMatch match;
+
     if (utc)
         value.chop(1); // take away z from end;
 
-    QDateTime dateTime;
-    if (value.contains(QLatin1Char('-'))) {
-        dateTime = QDateTime::fromString(value,Qt::ISODate);
-        hasTime = dateTime.isValid() && value.contains(QLatin1Char('T'));
-    } else {
-        switch (value.length()) {
-        case 8:
-            dateTime = QDateTime::fromString(value, QStringLiteral("yyyyMMdd"));
-            break;
-        case 15:
-            dateTime = QDateTime::fromString(value, QStringLiteral("yyyyMMddThhmmss"));
-            hasTime = true;
-            break;
-        // default: return invalid
+    // add time mask
+    if (hasTimeKey) {
+        regexShortDatePattern.append(timePattern);
+        regexFullDatePattern.append(timePattern);
+    }
+
+    re.setPattern(regexFullDatePattern.arg(yearPattern, monthPattern, dayPattern));
+    match = re.match(value);
+
+    // if the date is not in ISO format
+    if (!match.hasMatch()) {
+        re.setPattern(regexFullDatePattern.arg(dayPattern, monthPattern, yearPattern));
+        match = re.match(value);
+        // if year not specified in the date
+        if (!match.hasMatch()) {
+            re.setPattern(regexShortDatePattern.arg(monthPattern, dayPattern));
+            match = re.match(value);
         }
+    }
+
+    if (match.hasMatch()) {
+        auto checkDateFormat = [&](const QString &number, bool isYear = false) {
+            if (!isYear) {
+                // converting to ISO standard month and day
+                return number.length() < 2 ? "0" % number : number;
+            } else {
+                // setting the current year if it is missing from the date
+                return !number.contains(QRegExp(separatorPattern)) && !number.isEmpty() ? number
+                                                                                        : QString::number(QDate::currentDate().year());
+            }
+        };
+
+        QString day = checkDateFormat(match.captured(groupDay));
+        QString month = checkDateFormat(match.captured(groupMonth));
+        QString year = checkDateFormat(match.captured(groupYear), true);
+        QString min = checkDateFormat(match.captured(groupMin));
+        QString hour = checkDateFormat(match.captured(groupHr));
+        QString sec = checkDateFormat(match.captured(groupSec));
+
+        if (!hasTimeKey) {
+            dateTime = QDateTime::fromString(QStringLiteral("%1-%2-%3").arg(year, month, day), Qt::ISODate);
+            if (!hasSeparator && !dateTime.isValid())
+                dateTime = QDateTime::fromString(value, QStringLiteral("ddMMyyyy"));
+        } else {
+            // yyyy-MM-ddTHH:mm:ss ISO format
+            dateTime = QDateTime::fromString(QStringLiteral("%1-%2-%3T%4:%5:%6").arg(year, month, day, hour, min, sec), Qt::ISODate);
+            if (!dateTime.isValid()) {
+                QString dateTimeFormat = QStringLiteral("ddMMyyyy%1").arg(value.contains(QLatin1Char(':')) ? QStringLiteral("THH:mm:ss")
+                                                                                                           :  QStringLiteral("THHmmss"));
+                dateTime = QDateTime::fromString(value, dateTimeFormat);
+            }
+        }
+        hasTime = dateTime.isValid() && hasTimeKey;
     }
 
     if (utc)
