@@ -782,6 +782,79 @@ void tst_QVersitContactImporter::testAnniversary()
     QCOMPARE(anniversary.originalDate(), QDate(1981, 5, 20));
     QCOMPARE(anniversary.originalDateTime(), QDateTime(QDate(1981, 5, 20), QTime(1,2,3), Qt::UTC));
     QCOMPARE(anniversary.value(QContactAnniversary::FieldOriginalDate).type(), QVariant::DateTime);
+
+    QDate referenceDate;
+    QList<QPair<QStringList, bool>> testDates;
+    QStringList datesYearFirst(QStringList() << QStringLiteral("1981-05-21")
+                                             << QStringLiteral("1981/05/21")
+                                             << QStringLiteral("19810521")
+                                             << QStringLiteral("1981.05.21"));
+    testDates.append(qMakePair(datesYearFirst, false));
+
+    QStringList datesDayFirst(QStringList() << QStringLiteral("21-05-1981")
+                                            << QStringLiteral("21/05/1981")
+                                            << QStringLiteral("21051981")
+                                            << QStringLiteral("21.05.1981"));
+    testDates.append(qMakePair(datesDayFirst, false));
+
+    QStringList dateTimesYearFirst(QStringList() << QStringLiteral("1981-05-21T00:01:02")
+                                                 << QStringLiteral("1981/05/21T000102")
+                                                 << QStringLiteral("19810521T00:01:02")
+                                                 << QStringLiteral("1981.05.21T00:01:02"));
+    testDates.append(qMakePair(dateTimesYearFirst, true));
+
+
+    QStringList dateTimesUTCYearFirst(QStringList() << QStringLiteral("1981-05-21T00:01:02Z")
+                                                    << QStringLiteral("1981/05/21T000102Z")
+                                                    << QStringLiteral("19810521T00:01:02Z")
+                                                    << QStringLiteral("1981.05.21T00:01:02Z"));
+    testDates.append(qMakePair(dateTimesUTCYearFirst, true));
+
+    QStringList dateTimesDayFirst(QStringList() << QStringLiteral("21-05-1981T00:01:02")
+                                                << QStringLiteral("21/05/1981T000102")
+                                                << QStringLiteral("21051981T00:01:02")
+                                                << QStringLiteral("21.05.1981T00:01:02"));
+    testDates.append(qMakePair(dateTimesDayFirst, true));
+
+    // when there is no year in the date
+    QStringList datesWithoutYear(QStringList() << QStringLiteral("--05-21")
+                                               << QStringLiteral("05-21")
+                                               << QStringLiteral("05/21")
+                                               << QStringLiteral("0521")
+                                               << QStringLiteral("05.21"));
+
+    QStringList dateTimesWithoutYear(QStringList() << QStringLiteral("--05-21T00:01:02")
+                                                   << QStringLiteral("05-21T000102")
+                                                   << QStringLiteral("05/21T000102")
+                                                   << QStringLiteral("0521T00:01:02")
+                                                   << QStringLiteral("05.21T00:01:02"));
+
+    auto verifyDates = [&](const QStringList &dates, bool isDateTime = false) {
+        for (auto date : dates) {
+            bool isDateTimeUTC = date.endsWith(QLatin1Char('Z'), Qt::CaseInsensitive);
+            property.setValue(date);
+            document = createDocumentWithProperty(property);
+            QVERIFY(mImporter->importDocuments(QList<QVersitDocument>() << document));
+            contact = mImporter->contacts().first();
+            anniversary = contact.detail<QContactAnniversary>();
+
+            if (!isDateTime) {
+                QCOMPARE(anniversary.originalDate(), referenceDate);
+                QCOMPARE(anniversary.value(QContactAnniversary::FieldOriginalDate).type(), QVariant::Date);
+            } else {
+                QCOMPARE(anniversary.originalDateTime(), QDateTime(referenceDate, QTime(0, 1, 2), !isDateTimeUTC ? Qt::LocalTime : Qt::UTC));
+                QCOMPARE(anniversary.value(QContactAnniversary::FieldOriginalDate).type(), QVariant::DateTime);
+            }
+        }
+    };
+
+    referenceDate = QDate(QDate::currentDate().year(), 5, 21);
+    verifyDates(datesWithoutYear);
+    verifyDates(dateTimesWithoutYear, true);
+
+    referenceDate = QDate(1981, 5, 21);
+    for (auto testDate : testDates)
+        verifyDates(testDate.first, testDate.second);
 }
 
 void tst_QVersitContactImporter::testBirthday()
