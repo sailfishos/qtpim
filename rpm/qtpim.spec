@@ -177,10 +177,9 @@ This package contains the Qt PIM VersitOrganizer development files
 export QTDIR=/usr/share/qt5
 touch .git
 %qmake5
-make %{?_smp_mflags}
+%make_build
 
 %install
-rm -rf %{buildroot}
 %qmake_install
 # Fix wrong path in pkgconfig files
 find %{buildroot}%{_libdir}/pkgconfig -type f -name '*.pc' \
@@ -192,7 +191,7 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 rm -f %{buildroot}/%{_libdir}/*.la
 
 # We don't need qt5/Qt/
-rm -rf %{buildroot}/%{_includedir}/qt5/Qt
+rm -rf %{buildroot}/%{_qt5_includedir}/Qt
 
 %fdupes %{buildroot}/%{_includedir}
 
@@ -224,119 +223,119 @@ rm -rf %{buildroot}/%{_includedir}/qt5/Qt
 %files -n qt5-qtpim-contacts
 %defattr(-,root,root,-)
 %license LICENSE.LGPLv* LGPL_EXCEPTION.txt LICENSE.GPLv3
-%{_libdir}/libQt5Contacts.so.5
-%{_libdir}/libQt5Contacts.so.5.*
-%{_libdir}/qt5/plugins/contacts/libqtcontacts_memory.so
+%{_qt5_libdir}/libQt5Contacts.so.5
+%{_qt5_libdir}/libQt5Contacts.so.5.*
+%{_qt5_plugindir}/contacts/libqtcontacts_memory.so
 
 %files -n qt5-qtpim-contacts-tests
 %defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/contacts/libmaliciousplugin.so
-%{_libdir}/qt5/tests/qcontact/qcontact
-%{_libdir}/qt5/tests/qcontactcollection/qcontactcollection
-%{_libdir}/qt5/tests/qcontactdetail/qcontactdetail
-%{_libdir}/qt5/tests/qcontactdetails/qcontactdetails
-%{_libdir}/qt5/tests/qcontactfilter/qcontactfilter
-%{_libdir}/qt5/tests/qcontactmanager/qcontactmanager
-%{_libdir}/qt5/tests/qcontactmanagerdetails/qcontactmanagerdetails
-%{_libdir}/qt5/tests/qcontactrelationship/qcontactrelationship
-%{_libdir}/qt5/tests/qcontactsortorder/qcontactsortorder
-%{_libdir}/qt5/tests/tst_qcontactasync/tst_qcontactasync
-%{_libdir}/qt5/tests/unittest/unittest
+%{_qt5_plugindir}/contacts/libmaliciousplugin.so
+%{_qt5_archdatadir}/tests/qcontact/qcontact
+%{_qt5_archdatadir}/tests/qcontactcollection/qcontactcollection
+%{_qt5_archdatadir}/tests/qcontactdetail/qcontactdetail
+%{_qt5_archdatadir}/tests/qcontactdetails/qcontactdetails
+%{_qt5_archdatadir}/tests/qcontactfilter/qcontactfilter
+%{_qt5_archdatadir}/tests/qcontactmanager/qcontactmanager
+%{_qt5_archdatadir}/tests/qcontactmanagerdetails/qcontactmanagerdetails
+%{_qt5_archdatadir}/tests/qcontactrelationship/qcontactrelationship
+%{_qt5_archdatadir}/tests/qcontactsortorder/qcontactsortorder
+%{_qt5_archdatadir}/tests/tst_qcontactasync/tst_qcontactasync
+%{_qt5_archdatadir}/tests/unittest/unittest
 
 %files -n qt5-qtpim-contacts-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQt5Contacts.so
-%{_libdir}/libQt5Contacts.prl
-%{_libdir}/pkgconfig/Qt5Contacts.pc
-%{_includedir}/qt5/QtContacts/
-%{_datadir}/qt5/mkspecs/modules/qt_lib_contacts.pri
-%{_datadir}/qt5/mkspecs/modules/qt_lib_contacts_private.pri
-%{_libdir}/cmake/Qt5Contacts/
+%{_qt5_libdir}/libQt5Contacts.so
+%{_qt5_libdir}/libQt5Contacts.prl
+%{_qt5_libdir}/pkgconfig/Qt5Contacts.pc
+%{_qt5_includedir}/QtContacts/
+%{_qt5_archdatadir}/mkspecs/modules/qt_lib_contacts.pri
+%{_qt5_archdatadir}/mkspecs/modules/qt_lib_contacts_private.pri
+%{_qt5_libdir}/cmake/Qt5Contacts/
 
 %files -n qt5-qtdeclarative-pim-contacts
 %defattr(-,root,root,-)
-%{_libdir}/qt5/qml/QtContacts/
+%{_qt5_archdatadir}/qml/QtContacts/
 
 %files -n qt5-qtpim-organizer
 %defattr(-,root,root,-)
 %{_libdir}/libQt5Organizer.so.5
 %{_libdir}/libQt5Organizer.so.5.*
-%{_libdir}/qt5/plugins/organizer/libqtorganizer_memory.so
+%{_qt5_plugindir}/organizer/libqtorganizer_memory.so
 
 %files -n qt5-qtpim-organizer-tests
 %defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/organizer/libmaliciousplugin.so
-%{_libdir}/qt5/tests/qorganizercollection/qorganizercollection
-%{_libdir}/qt5/tests/qorganizere2e/qorganizere2e
-%{_libdir}/qt5/tests/qorganizeritem/qorganizeritem
-%{_libdir}/qt5/tests/qorganizeritemdetail/qorganizeritemdetail
-%{_libdir}/qt5/tests/qorganizeritemdetails/qorganizeritemdetails
-%{_libdir}/qt5/tests/qorganizeritemfilter/qorganizeritemfilter
-%{_libdir}/qt5/tests/qorganizeritemsortorder/qorganizeritemsortorder
-%{_libdir}/qt5/tests/qorganizermanager/qorganizermanager
-%{_libdir}/qt5/tests/qorganizermanagerdetails/qorganizermanagerdetails
-%{_libdir}/qt5/tests/tst_qorganizeritemasync/tst_qorganizeritemasync
+%{_qt5_plugindir}/organizer/libmaliciousplugin.so
+%{_qt5_archdatadir}/tests/qorganizercollection/qorganizercollection
+%{_qt5_archdatadir}/tests/qorganizere2e/qorganizere2e
+%{_qt5_archdatadir}/tests/qorganizeritem/qorganizeritem
+%{_qt5_archdatadir}/tests/qorganizeritemdetail/qorganizeritemdetail
+%{_qt5_archdatadir}/tests/qorganizeritemdetails/qorganizeritemdetails
+%{_qt5_archdatadir}/tests/qorganizeritemfilter/qorganizeritemfilter
+%{_qt5_archdatadir}/tests/qorganizeritemsortorder/qorganizeritemsortorder
+%{_qt5_archdatadir}/tests/qorganizermanager/qorganizermanager
+%{_qt5_archdatadir}/tests/qorganizermanagerdetails/qorganizermanagerdetails
+%{_qt5_archdatadir}/tests/tst_qorganizeritemasync/tst_qorganizeritemasync
 
 %files -n qt5-qtpim-organizer-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQt5Organizer.so
-%{_libdir}/libQt5Organizer.prl
-%{_libdir}/pkgconfig/Qt5Organizer.pc
-%{_includedir}/qt5/QtOrganizer/
-%{_datadir}/qt5/mkspecs/modules/qt_lib_organizer.pri
-%{_datadir}/qt5/mkspecs/modules/qt_lib_organizer_private.pri
+%{_qt5_libdir}/libQt5Organizer.so
+%{_qt5_libdir}/libQt5Organizer.prl
+%{_qt5_libdir}/pkgconfig/Qt5Organizer.pc
+%{_qt5_includedir}/QtOrganizer/
+%{_qt5_archdatadir}/mkspecs/modules/qt_lib_organizer.pri
+%{_qt5_archdatadir}/mkspecs/modules/qt_lib_organizer_private.pri
 %{_libdir}/cmake/Qt5Organizer/
 
 %files -n qt5-qtdeclarative-pim-organizer
 %defattr(-,root,root,-)
-%{_libdir}/qt5/qml/QtOrganizer/
+%{_qt5_archdatadir}/qml/QtOrganizer/
 
 %files -n qt5-qtpim-versit
 %defattr(-,root,root,-)
 %{_libdir}/libQt5Versit.so.5
 %{_libdir}/libQt5Versit.so.5.*
-%{_libdir}/qt5/plugins/versit/libqtversit_backuphandler.so
-%{_libdir}/qt5/plugins/versit/libqtversit_vcardpreserver.so
+%{_qt5_plugindir}/versit/libqtversit_backuphandler.so
+%{_qt5_plugindir}/versit/libqtversit_vcardpreserver.so
 
 %files -n qt5-qtpim-versit-tests
 %defattr(-,root,root,-)
-%{_libdir}/qt5/tests/qvcard21writer/qvcard21writer
-%{_libdir}/qt5/tests/qvcard30writer/qvcard30writer
-%{_libdir}/qt5/tests/qversitdocument/qversitdocument
-%{_libdir}/qt5/tests/qversitproperty/qversitproperty
-%{_libdir}/qt5/tests/qversitreader/qversitreader
-%{_libdir}/qt5/tests/qversitwriter/qversitwriter
-%{_libdir}/qt5/tests/qversitcontactexporter/qversitcontactexporter
-%{_libdir}/qt5/tests/qversitcontactimporter/qversitcontactimporter
-%{_libdir}/qt5/tests/tst_qversitcontactplugins/tst_qversitcontactplugins
+%{_qt5_archdatadir}/tests/qvcard21writer/qvcard21writer
+%{_qt5_archdatadir}/tests/qvcard30writer/qvcard30writer
+%{_qt5_archdatadir}/tests/qversitdocument/qversitdocument
+%{_qt5_archdatadir}/tests/qversitproperty/qversitproperty
+%{_qt5_archdatadir}/tests/qversitreader/qversitreader
+%{_qt5_archdatadir}/tests/qversitwriter/qversitwriter
+%{_qt5_archdatadir}/tests/qversitcontactexporter/qversitcontactexporter
+%{_qt5_archdatadir}/tests/qversitcontactimporter/qversitcontactimporter
+%{_qt5_archdatadir}/tests/tst_qversitcontactplugins/tst_qversitcontactplugins
 
 %files -n qt5-qtpim-versit-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQt5Versit.so
-%{_libdir}/libQt5Versit.prl
-%{_libdir}/pkgconfig/Qt5Versit.pc
-%{_includedir}/qt5/QtVersit/
-%{_datadir}/qt5/mkspecs/modules/qt_lib_versit.pri
-%{_datadir}/qt5/mkspecs/modules/qt_lib_versit_private.pri
-%{_libdir}/cmake/Qt5Versit/
+%{_qt5_libdir}/libQt5Versit.so
+%{_qt5_libdir}/libQt5Versit.prl
+%{_qt5_libdir}/pkgconfig/Qt5Versit.pc
+%{_qt5_includedir}/QtVersit/
+%{_qt5_archdatadir}/mkspecs/modules/qt_lib_versit.pri
+%{_qt5_archdatadir}/mkspecs/modules/qt_lib_versit_private.pri
+%{_qt5_libdir}/cmake/Qt5Versit/
 
 %files -n qt5-qtpim-versitorganizer
 %defattr(-,root,root,-)
-%{_libdir}/libQt5VersitOrganizer.so.5
-%{_libdir}/libQt5VersitOrganizer.so.5.*
+%{_qt5_libdir}/libQt5VersitOrganizer.so.5
+%{_qt5_libdir}/libQt5VersitOrganizer.so.5.*
 
 %files -n qt5-qtpim-versitorganizer-tests
 %defattr(-,root,root,-)
-%{_libdir}/qt5/tests/qversitorganizerexporter/qversitorganizerexporter
-%{_libdir}/qt5/tests/qversitorganizerimporter/qversitorganizerimporter
+%{_qt5_archdatadir}/tests/qversitorganizerexporter/qversitorganizerexporter
+%{_qt5_archdatadir}/tests/qversitorganizerimporter/qversitorganizerimporter
 
 %files -n qt5-qtpim-versitorganizer-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQt5VersitOrganizer.so
-%{_libdir}/libQt5VersitOrganizer.prl
-%{_libdir}/pkgconfig/Qt5VersitOrganizer.pc
-%{_includedir}/qt5/QtVersitOrganizer/
-%{_datadir}/qt5/mkspecs/modules/qt_lib_versitorganizer.pri
-%{_datadir}/qt5/mkspecs/modules/qt_lib_versitorganizer_private.pri
-%{_libdir}/cmake/Qt5VersitOrganizer/
+%{_qt5_libdir}/libQt5VersitOrganizer.so
+%{_qt5_libdir}/libQt5VersitOrganizer.prl
+%{_qt5_libdir}/pkgconfig/Qt5VersitOrganizer.pc
+%{_qt5_includedir}/QtVersitOrganizer/
+%{_qt5_archdatadir}/mkspecs/modules/qt_lib_versitorganizer.pri
+%{_qt5_archdatadir}/mkspecs/modules/qt_lib_versitorganizer_private.pri
+%{_qt5_libdir}/cmake/Qt5VersitOrganizer/
 
