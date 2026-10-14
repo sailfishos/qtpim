@@ -309,7 +309,12 @@ bool QVersitContactImporterPrivate::createPhone(
     QString value(property.value());
     if (value.isEmpty())
         return false;
-    phone.setNumber(property.value());
+    if (property.parameters().value(QStringLiteral("VALUE")).toUpper() == QStringLiteral("URI")
+        && value.toLower().startsWith(QStringLiteral("tel:"))) {
+        phone.setNumber(value.mid(4));
+    } else {
+        phone.setNumber(value);
+    }
     QStringList subTypes(extractSubTypes(property));
     QList<int> subTypesInt;
 
